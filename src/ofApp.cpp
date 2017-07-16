@@ -5,7 +5,7 @@ void ofApp::setup(){
   ofSetVerticalSync(true);
   ofBackground(0);
   // FFTのサンプル数(2の累乗)を指定して初期化
-  fft.setup(pow(2.0, 15.0));
+  fft.setup(pow(2.0, 12.0));
 }
 
 void ofApp::update(){
@@ -20,10 +20,20 @@ void ofApp::draw(){
   ofNoFill();
   ofSetLineWidth(2.0);
   ofBeginShape();
+  float maxi = 0;
   for (int i = 0; i < buffer.size(); i++) {
-    float x = ofMap(i, 0, buffer.size(), 0, ofGetWidth());
+    if (buffer[maxi] < buffer[i]) {
+      maxi = i;
+    }
+    float x = ofMap(i, 0, buffer.size(), 0, ofGetWidth() * 5);
     float y = ofMap(buffer[i], 0, 1, ofGetHeight() - 100, 0);
+    
     ofVertex(x, y);
   }
+  float ff = 22050.5 / pow(2.0, 17.0);  // 変換係数
+  std::cout<< maxi << std::endl;
+  std::cout<< buffer.size() << std::endl;
+  std::cout<< maxi * ff << " Hz" << std::endl;
+  
   ofEndShape();
 }
