@@ -14,9 +14,12 @@ class ofApp : public ofBaseApp{
   void mouseReleased(int x, int y, int button);
   ofxEasyFft fft; // ofxEasyFftインスタンス
   ofArduino	ard;
-  bool		bSetupArduino;
+  bool		bSetupArduino_;
 
  private:
   void setupArduino(const int & version);
   void updateArduino();
+  
+  vector<float> buffer;
+  float ff_factor_;
 };
