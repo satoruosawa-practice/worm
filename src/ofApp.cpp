@@ -7,15 +7,12 @@ void ofApp::setup() {
   
   serial_.setup("/dev/cu.usbmodem1411",9600);
 
-  fft_.setup(serial_);
 }
 
 void ofApp::update() {
-  fft_.update();
 }
 
 void ofApp::draw() {
-  fft_.draw();
 }
 
 void ofApp::keyPressed(int key) {
